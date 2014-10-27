@@ -1,0 +1,35 @@
+{
+  "name": "coverage-blamer",
+  "version": "0.0.1",
+  "description": "coverage-blamer is tool for get information about authors of uncovered code",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha $(find test -name '*.js')",
+    "ci": "COVERAGE=true ./node_modules/mocha/bin/mocha -R mocha-phantom-coverage-reporter $(find test -name '*.js')",
+    "developing": "./node_modules/mocha/bin/mocha --watch $(find test -name '*.js')"
+
+  },
+  "keywords": [
+    "blame",
+    "code",
+    "coverage",
+    "tests",
+    "mocha",
+    "jasmine"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "~2.0.x",
+    "chai": "~1.9.x",
+    "sinon": "~1.10.x",
+    "sinon-chai": "~2.6.x",
+    "proxyquire": "~1.0.x",
+    "coveralls": "~2.11.x",
+    "jscoverage": "~0.5.x",
+    "mocha-phantom-coverage-reporter": "~0.1.x"
+  },
+  "readmeFilename": "README.md",
+  "author": "Andrey Kucherenko",
+  "license": "MIT"
+}
