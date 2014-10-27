@@ -18,6 +18,7 @@
     "jasmine"
   ],
   "dependencies": {
+    "blamer": "~0.1.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",
