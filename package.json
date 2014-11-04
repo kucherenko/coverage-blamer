@@ -4,9 +4,9 @@
   "description": "coverage-blamer is tool for get information about authors of uncovered code",
   "main": "index.js",
   "scripts": {
-    "test": "mocha $(find test -name '*.js')",
-    "ci": "COVERAGE=true ./node_modules/mocha/bin/mocha -R mocha-phantom-coverage-reporter $(find test -name '*.js')",
-    "developing": "./node_modules/mocha/bin/mocha --watch $(find test -name '*.js')"
+    "test": "mocha --compilers coffee:coffee-script/register $(find test -name '*.coffee')",
+    "ci": "COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R mocha-phantom-coverage-reporter $(find test -name '*.coffee')",
+    "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')"
 
   },
   "keywords": [
@@ -18,7 +18,8 @@
     "jasmine"
   ],
   "dependencies": {
-    "blamer": "~0.1.x"
+    "blamer": "~0.1.x",
+    "coffee-script": "~1.7.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",
@@ -28,6 +29,7 @@
     "proxyquire": "~1.0.x",
     "coveralls": "~2.11.x",
     "jscoverage": "~0.5.x",
+    "coffee-coverage": "~0.4.x",
     "mocha-phantom-coverage-reporter": "~0.1.x"
   },
   "readmeFilename": "README.md",

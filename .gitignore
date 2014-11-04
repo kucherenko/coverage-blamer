@@ -31,3 +31,4 @@ npm-debug.log
 nbproject
 .idea
 atlassian-ide-plugin.xml
+coverage-blamer.sublime-project
