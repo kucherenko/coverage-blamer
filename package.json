@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "blamer": "~0.1.x",
-    "coffee-script": "~1.7.x"
+    "coffee-script": "~1.8.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",
