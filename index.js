@@ -1,5 +1,5 @@
 var CoffeeScript = require("coffee-script");
 CoffeeScript.register();
 
-var jscpd = require('./src/CoverageBlamer');
-exports = module.exports = jscpd;
+var CoverageBlamer = require('./src/CoverageBlamer');
+exports = module.exports = CoverageBlamer;

@@ -3,4 +3,4 @@
 License
 -------
 
-[The MIT License](https://github.com/kucherenko/blamer/blob/master/LICENSE)
+[The MIT License](https://github.com/kucherenko/coverage-blamer/blob/master/LICENSE)

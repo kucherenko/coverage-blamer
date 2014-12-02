@@ -9,6 +9,10 @@
     "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')"
 
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kucherenko/coverage-blamer.git"
+  },
   "keywords": [
     "blame",
     "code",
@@ -19,7 +23,9 @@
   ],
   "dependencies": {
     "blamer": "~0.1.x",
-    "coffee-script": "~1.8.x"
+    "coffee-script": "~1.8.x",
+    "bluebird": "~2.3.x",
+    "lodash": "~2.4.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",
