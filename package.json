@@ -29,10 +29,10 @@
   },
   "devDependencies": {
     "mocha": "~2.0.x",
-    "chai": "~1.9.x",
-    "sinon": "~1.10.x",
+    "chai": "~1.10.x",
+    "sinon": "~1.12.x",
     "sinon-chai": "~2.6.x",
-    "proxyquire": "~1.0.x",
+    "proxyquire": "~1.1.x",
     "coveralls": "~2.11.x",
     "jscoverage": "~0.5.x",
     "coffee-coverage": "~0.4.x",

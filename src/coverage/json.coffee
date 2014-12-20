@@ -1,0 +1,5 @@
+
+
+json = ->
+
+module.exports = json

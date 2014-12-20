@@ -14,8 +14,8 @@ chai.should()
 
 beforeEach ->
   global.chai = chai
-  global.proxyquire = proxyquire
   global.sinon = sinon
+  global.proxyquire = proxyquire
   global.env = sinon.sandbox.create()
 
 afterEach ->
