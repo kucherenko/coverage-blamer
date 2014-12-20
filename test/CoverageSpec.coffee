@@ -9,11 +9,7 @@ describe "Coverage", ->
 
 	beforeEach ->
 		json = env.stub()
-		sut = proxyquire "#{sourcePath}Coverage", {
-			'../coverage/json': 'zzz'
-		}
-
+		sut = require "#{sourcePath}Coverage"
+		
 	it "should get coverage by files", ->
-		cb = new sut '/path/to/coverage.json'
-		cb.anotate()
-		json.should.have.been.calledWith '/path/to/coverage.json'
+		coverage = new sut '/path/to/coverage.json'

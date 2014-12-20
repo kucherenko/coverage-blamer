@@ -1,5 +1,13 @@
 
+class JSONCoverage
 
-json = ->
+  constructor: (@file) ->
 
-module.exports = json
+  read: () ->
+    @content = require @file
+
+  toObject: ->
+    @content
+
+
+module.exports = JSONCoverage

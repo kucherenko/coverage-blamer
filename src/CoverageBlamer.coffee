@@ -1,16 +1,21 @@
-Promise = require "bluebird"
 _ = require "lodash"
+Promise = require "bluebird"
+path = require 'path'
 
 class CoverageBlamer
 
-	constructor: (@coverage, @blamer) ->
+	constructor: (@coverage, @blamer, @src) ->
 
-	anotate: ->
-		files = @coverage.getCoverageByFiles()
+	blame: ->
+		coverage = @coverage.toObject()
+		blamePromisses = []
+		coverageRegistry = {}
 
-		Promise.all(@blamer.blameByFile file for file in Object.keys files).then (results) ->
-			blame = {}
-			_.extend blame, res for res in results
-			return coverage: files, blame: blame
+		for file in coverage.files
+			coverageRegistry[file.filename] = file
+			blamePromisses.push @blamer.blameByFile path.join(@src, file.filename)
+
+		# Promise.all(blamePromisses).then (results) ->
+		# 		console.log results
 
 module.exports = CoverageBlamer

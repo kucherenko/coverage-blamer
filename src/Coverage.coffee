@@ -1,17 +1,27 @@
-
 path = require 'path'
-
 json = require './coverage/json'
-
+lcov = require './coverage/lcov'
 
 
 class Coverage
 
-  constructor: (@file) ->
+  constructor: (file) ->
+    @file = file
+    @coverager = null
+    @initialize()
 
-  anotate: ->
-    console.log(json)
-    if path.extname(@file) is '.json'
-      json(@file)
+
+  initialize: ->
+    ext = path.extname(@file)
+    if ext is '.json'
+      @coverager = new json @file
+    else if ext is '.lcov'
+      @coverager = new lcov @file
+
+  toObject: ->
+    if @coverager
+      @coverager.read()
+      @coverager.toObject()
+
 
 module.exports = Coverage
