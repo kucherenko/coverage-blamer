@@ -1,6 +1,7 @@
 _ = require "lodash"
 Promise = require "bluebird"
 path = require 'path'
+jsonReporter = require './reporter/json'
 
 class CoverageBlamer
 
@@ -12,10 +13,16 @@ class CoverageBlamer
 		coverageRegistry = {}
 
 		for file in coverage.files
-			coverageRegistry[file.filename] = file
-			blamePromisses.push @blamer.blameByFile path.join(@src, file.filename)
+			filePath = path.join(@src, file.filename)
+			coverageRegistry[filePath] = file
+			blamePromisses.push @blamer.blameByFile filePath
 
-		# Promise.all(blamePromisses).then (results) ->
-		# 		console.log results
+		Promise.all(blamePromisses).then (results) ->
+				for res in results
+					fileName = Object.keys(res)[0]
+					coverageRegistry[fileName].source = _.merge coverageRegistry[fileName].source, res[fileName]
+				return coverage
+			.catch ->
+				console.log arguments
 
 module.exports = CoverageBlamer

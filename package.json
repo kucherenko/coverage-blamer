@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register $(find test -name '*.coffee')",
-    "ci": "COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R mocha-phantom-coverage-reporter $(find test -name '*.coffee')",
+    "ci": "./node_modules/coffee-coverage/bin/coffeecoverage --path relative src .tmp & COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R mocha-phantom-coverage-reporter $(find test -name '*.coffee')",
     "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')"
 
   },
@@ -30,7 +30,9 @@
   "devDependencies": {
     "mocha": "~2.0.x",
     "chai": "~1.10.x",
+    "chai-as-promised": "~4.1.x",
     "sinon": "~1.12.x",
+    "sinon-as-promised": "~2.0.x",
     "sinon-chai": "~2.6.x",
     "proxyquire": "~1.1.x",
     "coveralls": "~2.11.x",

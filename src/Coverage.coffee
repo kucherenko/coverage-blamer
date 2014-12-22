@@ -1,4 +1,5 @@
 path = require 'path'
+
 json = require './coverage/json'
 lcov = require './coverage/lcov'
 

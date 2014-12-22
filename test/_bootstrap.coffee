@@ -8,8 +8,11 @@ else
 chai = require("chai")
 sinon = require("sinon")
 proxyquire = require("proxyquire")
+sinonAsPromised = require("sinon-as-promised")
 
 chai.use require("sinon-chai")
+chai.use require("chai-as-promised")
+
 chai.should()
 
 beforeEach ->

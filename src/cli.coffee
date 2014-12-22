@@ -7,4 +7,5 @@ coverage = new Coverage '/home/apk/workspace/lab/coverage-blamer/coverage/covera
 
 coverageBlamer = new CoverageBlamer coverage, blamer, '/home/apk/workspace/lab/coverage-blamer/src'
 
-coverageBlamer.blame()
+coverageBlamer.blame().then (result) ->
+  # console.log result.files[0].source
