@@ -1,14 +1,34 @@
 _ = require "lodash"
 Promise = require "bluebird"
 path = require 'path'
-jsonReporter = require './reporter/json'
+
+Blamer = require 'blamer'
+Coverage = require './Coverage'
 
 class CoverageBlamer
 
-	constructor: (@coverage, @blamer, @src) ->
+	constructor: (options) ->
+		@init options
+
+	init: (options) ->
+		@src = options.src
+		if options.coverage instanceof Coverage
+			@coverage = options.coverage
+		else
+			@coverage = new Coverage options.coverage
+
+		if options.blamer instanceof Blamer
+			@blamer = options.blamer
+		else
+			@blamer = new Blamer options.blamer
+
+
 
 	blame: ->
 		coverage = @coverage.toObject()
+		# console.log coverage
+		if !coverage?.files then return console.log 'coverage is not exists'
+
 		blamePromisses = []
 		coverageRegistry = {}
 

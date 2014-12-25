@@ -4,7 +4,7 @@
   "description": "coverage-blamer is tool for get information about authors of uncovered code",
   "main": "index.js",
   "bin": {
-      "coverage-blamer": "./bin/coverage-blamer"
+    "coverage-blamer": "./bin/coverage-blamer"
   },
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register $(find test -name '*.coffee')",
@@ -25,10 +25,10 @@
     "jasmine"
   ],
   "dependencies": {
-    "blamer": "~0.1.x",
     "coffee-script": "~1.8.x",
+    "lodash": "~2.4.x",
     "bluebird": "~2.3.x",
-    "lodash": "~2.4.x"
+    "blamer": "~0.1.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",

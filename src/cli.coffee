@@ -2,8 +2,9 @@ CoverageBlamer = require './CoverageBlamer'
 Blamer = require 'blamer'
 Coverage = require './Coverage'
 
-blamer = new Blamer()
-coverage = new Coverage '/home/apk/workspace/lab/coverage-blamer/coverage/coverage.json'
+options =
+  coverage: new Coverage '/home/apk/workspace/lab/coverage-blamer/coverage/coverage.json'
+  blamer: new Blamer()
 
 coverageBlamer = new CoverageBlamer coverage, blamer, '/home/apk/workspace/lab/coverage-blamer/src'
 
