@@ -5,6 +5,7 @@ path = require 'path'
 Blamer = require 'blamer'
 Coverage = require './Coverage'
 Processors = require "./Processors"
+Reports = require "./Reports"
 
 class CoverageBlamer
 
@@ -30,7 +31,8 @@ class CoverageBlamer
     return result
 
   report: (result) ->
-
+    Reports.json result, @options
+    
   blame: ->
     coverage = @coverage.toObject()
 

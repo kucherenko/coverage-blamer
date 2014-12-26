@@ -1,6 +1,6 @@
 
 if process.env["COVERAGE"]
-  console.log "COVERAGE mode is on"
+  # console.log "COVERAGE mode is on"
   global.sourcePath = __dirname + "/../.tmp/"
 else
   global.sourcePath = __dirname + "/../src/"

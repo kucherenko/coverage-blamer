@@ -4,6 +4,7 @@ require "./_bootstrap"
 Blamer = require 'blamer'
 Coverage = require "#{sourcePath}Coverage"
 Processors = require "#{sourcePath}Processors"
+Reports = require "#{sourcePath}Reports"
 
 describe "Coverage Blamer", ->
 
@@ -104,4 +105,22 @@ describe "Coverage Blamer", ->
 
     it 'should process statistic', ->
       cb.process result
-      Processors.process.should.have.been.calledWith result
+      Processors.process.should.have.been.calledWith result, cb.options
+
+  describe 'Generate Report', ->
+    result = null
+    cb = null
+
+    beforeEach ->
+      cb = new sut
+        coverage: coverage,
+        blamer: blamer,
+        src: pathToSource
+        dest: '/path/to/report'
+      env.stub Reports
+      result = test: "data"
+
+    it 'should generate json', ->
+
+      cb.report result
+      Reports.json.should.have.been.calledWith result
