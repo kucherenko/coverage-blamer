@@ -6,7 +6,7 @@ options =
   coverage: new Coverage '/home/apk/workspace/lab/coverage-blamer/coverage/coverage.json'
   blamer: new Blamer()
 
-coverageBlamer = new CoverageBlamer coverage, blamer, '/home/apk/workspace/lab/coverage-blamer/src'
+coverageBlamer = new CoverageBlamer options
 
 coverageBlamer.blame().then (result) ->
   console.log result

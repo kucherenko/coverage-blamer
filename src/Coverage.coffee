@@ -11,7 +11,6 @@ class Coverage
     @coverager = null
     @initialize()
 
-
   initialize: ->
     ext = path.extname(@file)
     if ext is '.json'
@@ -23,6 +22,5 @@ class Coverage
     if @coverager
       @coverager.read()
       @coverager.toObject()
-
 
 module.exports = Coverage
