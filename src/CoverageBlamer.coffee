@@ -12,14 +12,10 @@ class CoverageBlamer
   constructor: (options) ->
     @init options
 
-
   init: (options) ->
     @options = options
     @src = options.src
-    if options.coverage instanceof Coverage
-      @coverage = options.coverage
-    else
-      @coverage = new Coverage options.coverage
+    @coverage = options.coverage
 
     if options.blamer instanceof Blamer
       @blamer = options.blamer
@@ -32,7 +28,8 @@ class CoverageBlamer
 
   report: (result) ->
     Reports.json result, @options
-    
+    Reports.html result, @options
+
   blame: ->
     coverage = @coverage.toObject()
 

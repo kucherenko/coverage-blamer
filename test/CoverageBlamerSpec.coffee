@@ -1,8 +1,8 @@
 _ = require 'lodash'
 require "./_bootstrap"
 
+proxyquire = require('proxyquire').noPreserveCache()
 Blamer = require 'blamer'
-Coverage = require "#{sourcePath}Coverage"
 Processors = require "#{sourcePath}Processors"
 Reports = require "#{sourcePath}Reports"
 
@@ -16,8 +16,10 @@ describe "Coverage Blamer", ->
   blameData = null
   covObject = null
   expected = null
+  Coverage = null
 
   beforeEach ->
+
     pathToSource = '/path/to/source'
     blameData =
       "/path/to/source/file1":
@@ -31,6 +33,9 @@ describe "Coverage Blamer", ->
         filename: 'file1',
         source: {"1": {"a": "test", "b": "test"} }
     } ]
+
+    Coverage = proxyquire "#{sourcePath}Coverage",
+      fs: realpathSync: env.stub().returns '/path/to/file.json'
 
     coverage = new Coverage pathToSource
     env.stub(coverage, 'toObject').returns covObject
@@ -50,7 +55,7 @@ describe "Coverage Blamer", ->
 
     beforeEach ->
       options =
-        coverage: '/path/to/coverage.json'
+        coverage: coverage
         blamer: 'git'
         src: '/path/to/source'
 
@@ -76,9 +81,11 @@ describe "Coverage Blamer", ->
         coverage: coverage,
         blamer: blamer,
         src: pathToSource
+        output: '/tmp/1'
 
     it "should run statictic processors after blame", (done) ->
       process = env.stub(sut::, 'process')
+      report = env.stub(sut::, 'report')
       cb.run().then ->
         process.should.have.been.calledWith expected
         done()

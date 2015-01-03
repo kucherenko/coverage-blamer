@@ -1,5 +1,5 @@
 path = require 'path'
-
+fs = require 'fs'
 json = require './coverage/json'
 lcov = require './coverage/lcov'
 
@@ -7,7 +7,7 @@ lcov = require './coverage/lcov'
 class Coverage
 
   constructor: (file) ->
-    @file = file
+    @file = fs.realpathSync file
     @coverager = null
     @initialize()
 

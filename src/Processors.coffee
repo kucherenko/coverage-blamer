@@ -25,7 +25,7 @@ process = (result) ->
   dates = {}
   for file in result.files
     _.forOwn file.source, (line) ->
-
+      if not line.date then return
       author = authors[line.author]
       date = prepareDate line.date
 
@@ -33,10 +33,17 @@ process = (result) ->
           author = getAuthorTemplate line.author, date
           authors[line.author] = author
 
+
+      if not author.dates[date]
+          author.dates[date] =
+            "lines": 0
+            "uncoveredLines": 0
       dates[date] = dates[date] ? _.clone author.dates[date]
-      author.lines++
-      author.dates[date].lines++
-      dates[date].lines++
+
+      if line.coverage isnt ''
+        author.lines++
+        author.dates[date].lines++
+        dates[date].lines++
 
       if line.coverage is 0
         author.uncoveredLines++
@@ -45,6 +52,7 @@ process = (result) ->
 
   result.dates = dates
   result.authors = authors
+  return result
 
 module.exports =
   process: process

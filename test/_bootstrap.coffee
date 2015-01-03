@@ -7,7 +7,7 @@ else
 
 chai = require("chai")
 sinon = require("sinon")
-proxyquire = require("proxyquire")
+
 sinonAsPromised = require("sinon-as-promised")
 
 chai.use require("sinon-chai")
@@ -18,7 +18,6 @@ chai.should()
 beforeEach ->
   global.chai = chai
   global.sinon = sinon
-  global.proxyquire = proxyquire
   global.env = sinon.sandbox.create()
 
 afterEach ->

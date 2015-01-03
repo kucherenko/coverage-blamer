@@ -1,0 +1,76 @@
+<div class="ui vertically divided grid">
+  <h1>Coverage Report</h1>
+
+  <div class="two column row">
+    <div class="column">
+      <chartist class="ct-chart ct-golden-section" chartist-data="fullCoverage" chartist-chart-type="Pie" chartist-chart-options="fullCoverageOptions"></chartist>
+    </div>
+    <div class="column">
+      <div id="cal-heatmap"></div>
+      <div class="ui icon buttons">
+        <div id="previous" class="mini ui button">
+          Prev
+        </div>
+        <div id="next" class="mini ui button">
+          Next
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="two column row">
+    <div class="column">
+      <chartist class="ct-chart ct-golden-section" chartist-data="authorsBar" chartist-chart-type="Bar" chartist-chart-options="authorsOptions"></chartist>
+    </div>
+    <div class="column">
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>SLOC</th>
+            <th>Uncovered Lines</th>
+            <th>Coverage</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="author in authors">
+          <td data-title="'Name'" sortable="'name'">
+            {{author.author}}
+          </td>
+          <td data-title="'SLOC'" sortable="'sloc'">
+            {{author.lines}}
+          </td>
+          <td data-title="'Uncovered'" sortable="'uncovered'">
+            {{author.uncoveredLines}}
+          </td>
+          <td data-title="'Coverage'" sortable="'coverage'">
+            {{100 - author.uncoveredLines/author.lines | number:2}}%
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="one column row">
+    <div class="column">
+      <chartist class="ct-chart ct-golden-section" chartist-data="filesBar" chartist-chart-type="Bar" chartist-chart-options="filesOptions"></chartist>
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>SLOC</th>
+            <th>Coverage</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="file in files">
+          <td data-title="'Name'" sortable="'name'">
+            {{file.filename}}
+          </td>
+          <td data-title="'SLOC'" sortable="'sloc'">
+            {{file.sloc}}
+          </td>
+          <td data-title="'Coverage'" sortable="'coverage'">
+            {{file.coverage | number:2}}%
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

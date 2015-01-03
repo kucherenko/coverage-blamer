@@ -8,3 +8,4 @@ npm-debug.log
 ./coverage
 atlassian-ide-plugin.xml
 coverage-blamer.sublime-project
+assets
