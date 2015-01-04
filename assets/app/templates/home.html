@@ -26,7 +26,7 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>SLOC</th>
+            <th>Lines</th>
             <th>Uncovered Lines</th>
             <th>Coverage</th>
           </tr>
@@ -54,8 +54,9 @@
       <table class="ui table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>SLOC</th>
+            <th>File</th>
+            <th>Lines</th>
+            <th>Uncovered Lines</th>
             <th>Coverage</th>
           </tr>
         </thead>
@@ -63,8 +64,11 @@
           <td data-title="'Name'" sortable="'name'">
             {{file.filename}}
           </td>
-          <td data-title="'SLOC'" sortable="'sloc'">
-            {{file.sloc}}
+          <td data-title="'Lines'" sortable="'lines'">
+            {{file.lines}}
+          </td>
+          <td data-title="'Uncovered'" sortable="'uncovered'">
+            {{file.uncoveredLines}}
           </td>
           <td data-title="'Coverage'" sortable="'coverage'">
             {{file.coverage | number:2}}%

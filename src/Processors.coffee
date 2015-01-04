@@ -8,6 +8,10 @@ prepareDate = (string) ->
   d.setMilliseconds(0)
   d.getTime() / 1000
 
+normalizeAuthorName = (name)->
+  name = name.replace /^\s*|\s*$/g, ''
+  name.toUpperCase()
+
 getAuthorTemplate = (name, date) ->
   author =
     "author": name
@@ -23,16 +27,22 @@ getAuthorTemplate = (name, date) ->
 process = (result) ->
   authors = {}
   dates = {}
+  uncoveredLines = 0
+  lines = 0
   for file in result.files
+    file.lines = 0
+    file.uncoveredLines = 0
     _.forOwn file.source, (line) ->
       if not line.date then return
-      author = authors[line.author]
+      authorName = normalizeAuthorName line.author
+      author = authors[authorName]
       date = prepareDate line.date
+      console.log 'Date Error:', line.date if isNaN date
+      return if isNaN date
 
       if not author
           author = getAuthorTemplate line.author, date
-          authors[line.author] = author
-
+          authors[authorName] = author
 
       if not author.dates[date]
           author.dates[date] =
@@ -41,17 +51,25 @@ process = (result) ->
       dates[date] = dates[date] ? _.clone author.dates[date]
 
       if line.coverage isnt ''
+        lines++
+        file.lines++
         author.lines++
         author.dates[date].lines++
         dates[date].lines++
 
       if line.coverage is 0
+        uncoveredLines++
+        file.uncoveredLines++
         author.uncoveredLines++
         author.dates[date].uncoveredLines++
         dates[date].uncoveredLines++
+    file.coverage = 100 - file.uncoveredLines / file.lines
 
   result.dates = dates
   result.authors = authors
+  result.uncoveredLines = uncoveredLines
+  result.lines = lines
+  result.coverage = 100 - uncoveredLines/lines
   return result
 
 module.exports =

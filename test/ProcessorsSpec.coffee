@@ -56,7 +56,7 @@ describe "Processors", ->
     sut.process result
 
     result.authors.should.deep.equal
-      "author":
+      "AUTHOR":
         "author": "author"
         "lines": 3
         "uncoveredLines": 2
@@ -64,7 +64,7 @@ describe "Processors", ->
           "1413320401":
             "lines": 3
             "uncoveredLines": 2
-      "author1":
+      "AUTHOR1":
         "author": "author1"
         "lines": 2
         "uncoveredLines": 0

@@ -12,6 +12,7 @@ commander
   .option('-v, --vcs [type]', 'Version control system', 'git')
   .option('-s, --source <path>', 'Path to source folder')
   .option('-o, --output <path>', 'Path to output folder')
+  .option('-r, --disableRow <boolean>', 'Disable row coverage in report', true)
   .parse process.argv
 
 options =
@@ -19,6 +20,7 @@ options =
   blamer: new Blamer commander.vcs
   output: commander.output
   src: commander.source
+  disableRow: commander.disableRow
 
 coverageBlamer = new CoverageBlamer options
 

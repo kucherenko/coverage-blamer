@@ -30,7 +30,8 @@
     "bluebird": "~2.3.x",
     "blamer": "~0.1.x",
     "commander": "^2.6.x",
-    "mkdirp": "^0.5.x"
+    "mkdirp": "^0.5.x",
+    "lcov-parse": "^0.0.x"
   },
   "devDependencies": {
     "mocha": "~2.0.x",

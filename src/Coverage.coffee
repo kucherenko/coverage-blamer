@@ -14,9 +14,9 @@ class Coverage
   initialize: ->
     ext = path.extname(@file)
     if ext is '.json'
-      @coverager = new json @file
+      @coverager = new json @file, @options
     else if ext is '.lcov'
-      @coverager = new lcov @file
+      @coverager = new lcov @file, @options
 
   toObject: ->
     if @coverager

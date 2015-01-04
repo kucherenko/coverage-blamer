@@ -1,6 +1,7 @@
 _ = require "lodash"
 Promise = require "bluebird"
 path = require 'path'
+fs = require 'fs'
 
 Blamer = require 'blamer'
 Coverage = require './Coverage'
@@ -35,9 +36,11 @@ class CoverageBlamer
 
     blamePromisses = []
     coverageRegistry = {}
-
     for file in coverage.files
-      filePath = path.join(@src, file.filename)
+      if fs.existsSync file.filename
+        filePath = file.filename
+      else
+        filePath = path.join(@src, file.filename)
       coverageRegistry[filePath] = file
       blamePromisses.push @blamer.blameByFile filePath
 

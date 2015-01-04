@@ -11,7 +11,7 @@ angular.module("app").controller 'HomeController', ($scope, $location, $resource
   $scope.fullCoverageOptions =
     donut: yes
 
-  $resource('test.json').get (coverage)->
+  $resource('coverage-blamer.json').get (coverage)->
     cov = parseFloat coverage.coverage.toFixed 2
     unCov = parseFloat (100 - cov).toFixed 2
     $scope.fullCoverage =
@@ -32,14 +32,16 @@ angular.module("app").controller 'HomeController', ($scope, $location, $resource
     $scope.filesBar =
       labels: _.map coverage.files, (file)-> file.filename
       series: [
-        _.map coverage.files, (file)-> file.coverage
+        _.map coverage.files, (file)-> 100 - file.uncoveredLines / file.lines
       ]
 
     cal.init
       domain: 'month'
-      subDomain: 'day'
-      cellSize: 25
-      range: 3
+      subDomain: 'x_day'
+      cellSize: 15
+      range: 6
+      verticalOrientation: yes
+      colLimit: 1
       domainGutter: 5
       itemName: 'item'
       data: uncovByDate
