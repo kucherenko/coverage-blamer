@@ -3,7 +3,7 @@
 
   <div class="two column row">
     <div class="column">
-      <chartist class="ct-chart ct-golden-section" chartist-data="fullCoverage" chartist-chart-type="Pie" chartist-chart-options="fullCoverageOptions"></chartist>
+      <div id="full-coverage"></div>
     </div>
     <div class="column">
       <div id="cal-heatmap"></div>
@@ -19,7 +19,7 @@
   </div>
   <div class="two column row">
     <div class="column">
-      <chartist class="ct-chart ct-golden-section" chartist-data="authorsBar" chartist-chart-type="Bar" chartist-chart-options="authorsOptions"></chartist>
+      <div id="bar-authors"></div>
     </div>
     <div class="column">
       <table class="ui table">
@@ -42,7 +42,7 @@
             {{author.uncoveredLines}}
           </td>
           <td data-title="'Coverage'" sortable="'coverage'">
-            {{100 - author.uncoveredLines/author.lines | number:2}}%
+            {{100 - 100*author.uncoveredLines/author.lines | number:2}}%
           </td>
         </tr>
       </table>
@@ -50,7 +50,7 @@
   </div>
   <div class="one column row">
     <div class="column">
-      <chartist class="ct-chart ct-golden-section" chartist-data="filesBar" chartist-chart-type="Bar" chartist-chart-options="filesOptions"></chartist>
+      <div id="bar-files"></div>
       <table class="ui table">
         <thead>
           <tr>

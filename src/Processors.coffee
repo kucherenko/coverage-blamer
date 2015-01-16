@@ -63,13 +63,13 @@ process = (result) ->
         author.uncoveredLines++
         author.dates[date].uncoveredLines++
         dates[date].uncoveredLines++
-    file.coverage = 100 - file.uncoveredLines / file.lines
+    file.coverage = 100 - (file.uncoveredLines / file.lines)*100
 
   result.dates = dates
   result.authors = authors
   result.uncoveredLines = uncoveredLines
   result.lines = lines
-  result.coverage = 100 - uncoveredLines/lines
+  result.coverage = 100 - (uncoveredLines/lines)*100
   return result
 
 module.exports =

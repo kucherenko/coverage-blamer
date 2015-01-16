@@ -14,15 +14,15 @@ module.exports = function(lineman) {
         "vendor/bower/jquery/dist/jquery.js",
         "vendor/bower/d3/d3.js",
         "vendor/bower/cal-heatmap/cal-heatmap.js",
-        "vendor/bower/chartist/dist/chartist.js",
         "vendor/bower/angular/angular.js",
         "vendor/bower/angular-animate/angular-animate.js",
         "vendor/bower/angular-cal-heatmap-directive/dist/1.3.0/calHeatmap.min.js",
         "vendor/bower/angular-resource/angular-resource.js",
         "vendor/bower/angular-route/angular-route.js",
-        "vendor/bower/ng-chartistjs/dist/ng-chartist.js",
+        "vendor/bower/raphael/raphael.js",
+        "vendor/bower/morris.js/morris.js",
+        "vendor/bower/chart-angular-raphaeljs-morris/src/directives/chartangular.js",
         "vendor/bower/ng-table/ng-table.js",
-        "vendor/bower/semantic-ui/dist/semantic.js",
         "vendor/js/**/*.js"
       ],
       app: [
@@ -32,10 +32,7 @@ module.exports = function(lineman) {
     },
     css: {
       vendor: [
-        "vendor/bower/semantic-ui/dist/semantic.css",
         "vendor/bower/cal-heatmap/cal-heatmap.css",
-        "vendor/bower/chartist/dist/chartist.min.css"
-
       ]
     },
     less: {
@@ -43,6 +40,7 @@ module.exports = function(lineman) {
         options: {
           paths: [
             "vendor/bower/ng-table/ng-table.less",
+            "vendor/bower/bootstrap/less/**/*.less",
             "app/css/**/*.less"
           ]
         }

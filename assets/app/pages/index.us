@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <base href="/"/>
     <title>Coverage Report</title>
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
   </head>
   <body>
-    <div class="container" id="view" ng-view></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4 col-md-2 sidebar">
+          11
+        </div>
+        <div id="view" ng-view class="col-sm-8 col-sm-offset-4 col-md-10 col-md-offset-2 main">
+          22
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container" id="view" ng-view></div> -->
     <script type="text/javascript" src="/js/app.js"></script>
   </body>
 </html>

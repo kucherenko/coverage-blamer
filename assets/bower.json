@@ -7,9 +7,9 @@
     "angular-animate": "^1.3.0",
     "angular-resource": "^1.3.0",
     "angular-route": "^1.3.0",
-    "ng-chartistjs": "*",
+    "chart-angular-raphaeljs-morris": "*",
     "ng-table": "*",
-    "semantic-ui": "*",
+    "bootstrap": "*",
     "angular-cal-heatmap-directive": "*"
   },
   "devDependencies": {

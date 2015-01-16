@@ -5,7 +5,9 @@
     + Coverage by day
     + Coverage by day and author
  - Reporters
-    - JSON
-    - HTML
- - Cli runner
+    + JSON
+    - HTML and CSS
+ + Cli runner
  - Blame with error
+ - Documentation
+ + lcov support

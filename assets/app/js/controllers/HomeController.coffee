@@ -1,39 +1,46 @@
 angular.module("app").controller 'HomeController', ($scope, $location, $resource, $rootScope, $timeout) ->
   cal = new CalHeatMap()
-  $scope.fullCoverage =
-    series: []
-  $scope.authorsBar =
-    series: []
-    labels: []
-  $scope.filesBar =
-    series: []
-    labels: []
-  $scope.fullCoverageOptions =
-    donut: yes
+  fullCoverageDonut = Morris.Donut
+    element: 'full-coverage'
+    resize: yes
+    colors: ['#c7d699','#FF0700']
+    data: [
+      {label: 'Covered', value:1}
+      {label: 'Uncovered', value:0}
+    ]
+
+  authorsBar = Morris.Bar
+    element: 'bar-authors',
+    barColors: ['#c7d699','#FF0700']
+    data: [],
+    xkey: 'y',
+    ykeys: ['a', 'b'],
+    labels: ['Total lines', 'Uncovered lines']
+
+  filesBar = Morris.Bar
+    element: 'bar-files',
+    barColors: ['#c7d699','#FF0700']
+    data: [],
+    xkey: 'y',
+    ykeys: ['a', 'b'],
+    labels: ['Total lines', 'Uncovered lines']
 
   $resource('coverage-blamer.json').get (coverage)->
     cov = parseFloat coverage.coverage.toFixed 2
     unCov = parseFloat (100 - cov).toFixed 2
-    $scope.fullCoverage =
-      series: [cov, unCov]
+    fullCoverageDonut.setData [
+      {label: 'Covered', value:cov}
+      {label: 'Uncovered', value:unCov}
+    ]
+
     uncovByDate = {}
     _.forIn coverage.dates, (value, key) ->
       uncovByDate[key] = value.uncoveredLines
     $scope.authors = _.values coverage.authors
     $scope.files = coverage.files
 
-    $scope.authorsBar =
-      labels: Object.keys(coverage.authors)
-      series: [
-        _.map $scope.authors, (author) -> author.lines
-        _.map $scope.authors, (author) -> author.uncoveredLines
-      ]
-
-    $scope.filesBar =
-      labels: _.map coverage.files, (file)-> file.filename
-      series: [
-        _.map coverage.files, (file)-> 100 - file.uncoveredLines / file.lines
-      ]
+    authorsBar.setData _.map coverage.authors, (author) -> y:author.author, a: author.lines, b: author.uncoveredLines
+    filesBar.setData _.map coverage.files, (file) -> y:file.filename, a: file.lines, b: file.uncoveredLines
 
     cal.init
       domain: 'month'
