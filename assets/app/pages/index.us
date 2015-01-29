@@ -8,10 +8,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-4 col-md-2 sidebar">
-          11
+          <h2>Coverage Blamer Report</h2>
+          <ul>
+            <li><a href="#summary">Summary<a></li>
+            <li><a href="#authors">Authors<a></li>
+            <li><a href="#files">Files<a></li>
+          </ul>
         </div>
         <div id="view" ng-view class="col-sm-8 col-sm-offset-4 col-md-10 col-md-offset-2 main">
-          22
         </div>
       </div>
     </div>
