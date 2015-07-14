@@ -1,6 +1,6 @@
 {
   "name": "coverage-blamer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "coverage-blamer is tool for get information about authors of uncovered code",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,6 @@
     "test-coverage": "./node_modules/coffee-coverage/bin/coffeecoverage --path relative src .tmp & COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R json-cov $(find test -name '*.coffee') > coverage/coverage.json",
     "ci": "./node_modules/coffee-coverage/bin/coffeecoverage --path relative src .tmp & COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R mocha-phantom-coverage-reporter $(find test -name '*.coffee')",
     "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')"
-
   },
   "repository": {
     "type": "git",
@@ -26,13 +25,14 @@
     "jasmine"
   ],
   "dependencies": {
-    "coffee-script": "~1.8.x",
-    "lodash": "~2.4.x",
-    "bluebird": "~2.5.x",
     "blamer": "~0.1.x",
+    "bluebird": "~2.5.x",
+    "cli-table": "^0.3.1",
+    "coffee-script": "~1.8.x",
     "commander": "^2.6.x",
-    "mkdirp": "^0.5.x",
-    "lcov-parse": "^0.0.x"
+    "lcov-parse": "^0.0.x",
+    "lodash": "~2.4.x",
+    "mkdirp": "^0.5.x"
   },
   "devDependencies": {
     "mocha": "^2.1.x",

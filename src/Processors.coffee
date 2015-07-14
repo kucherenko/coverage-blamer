@@ -54,6 +54,7 @@ process = (result) ->
         lines++
         file.lines++
         author.lines++
+        author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
         author.dates[date].lines++
         dates[date].lines++
 
@@ -63,7 +64,8 @@ process = (result) ->
         author.uncoveredLines++
         author.dates[date].uncoveredLines++
         dates[date].uncoveredLines++
-    file.coverage = 100 - (file.uncoveredLines / file.lines)*100
+        author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
+    file.coverage = 100 - (file.uncoveredLines / file.lines) * 100
 
   result.dates = dates
   result.authors = authors
