@@ -8,6 +8,23 @@ prepareDate = (string) ->
   d.setMilliseconds(0)
   d.getTime() / 1000
 
+
+sortByCoverage = (a, b) ->
+  return 1 if a.coverage > b.coverage
+  return -1 if a.coverage < b.coverage
+  return 0
+
+
+sortObjectByCoverage = (object) ->
+  results = {}
+  keysSorted = Object.keys(object).sort (a, b) ->
+    return 1 if object[a].coverage > object[b].coverage
+    return -1 if object[a].coverage < object[b].coverage
+    return 0
+  results[key] = object[key] for key in keysSorted
+  results
+
+
 normalizeAuthorName = (name)->
   name = name.replace /^\s*|\s*$/g, ''
   name.toUpperCase()
@@ -55,6 +72,7 @@ process = (result) ->
         file.lines++
         author.lines++
         author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
+        dates[date].coverage = 100 - (dates[date].uncoveredLines / dates[date].lines) * 100
         author.dates[date].lines++
         dates[date].lines++
 
@@ -65,10 +83,12 @@ process = (result) ->
         author.dates[date].uncoveredLines++
         dates[date].uncoveredLines++
         author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
+        dates[date].coverage = 100 - (dates[date].uncoveredLines / dates[date].lines) * 100
     file.coverage = 100 - (file.uncoveredLines / file.lines) * 100
 
   result.dates = dates
-  result.authors = authors
+  result.authors = sortObjectByCoverage authors
+  result.files = result.files.sort sortByCoverage if result.files
   result.uncoveredLines = uncoveredLines
   result.lines = lines
   result.coverage = 100 - (uncoveredLines/lines)*100

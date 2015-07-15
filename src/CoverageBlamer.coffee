@@ -29,7 +29,7 @@ class CoverageBlamer
 
   report: (result) ->
     Reports.cli result, @options
-    # Reports.json result, @options
+#    Reports.json result, @options
     # Reports.html result, @options
 
   blame: ->

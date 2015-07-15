@@ -29,7 +29,7 @@ describe "Coverage", ->
     coverage = new sut file
     coverage.coverager.should.be.an.instanceof JSONCoverage
 
-  it "should get coverager for lcov", ->
+  it.skip "should get coverager for lcov", ->
     file = '/path/to/coverage.lcov'
     fs.realpathSync.returns file
     coverage = new sut file

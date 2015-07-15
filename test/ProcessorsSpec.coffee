@@ -58,6 +58,7 @@ describe "Processors", ->
     result.authors.should.deep.equal
       "AUTHOR":
         "author": "author"
+        "coverage": 33.33333333333334
         "lines": 3
         "uncoveredLines": 2
         "dates":
@@ -66,11 +67,13 @@ describe "Processors", ->
             "uncoveredLines": 2
       "AUTHOR1":
         "author": "author1"
+        "coverage": 100
         "lines": 2
         "uncoveredLines": 0
         "dates":
           "1413406801":
             "lines": 2
+
             "uncoveredLines": 0
 
   it "should group code by dates", ->
@@ -78,8 +81,10 @@ describe "Processors", ->
 
     result.dates.should.deep.equal
       "1413320401":
+        "coverage": 33.33333333333334
         "lines": 3
         "uncoveredLines": 2
       "1413406801":
+        "coverage": 100
         "lines": 2
         "uncoveredLines": 0

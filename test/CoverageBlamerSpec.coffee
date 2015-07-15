@@ -127,7 +127,6 @@ describe "Coverage Blamer", ->
       env.stub Reports
       result = test: "data"
 
-    it 'should generate json', ->
-
+    it 'should generate cli report', ->
       cb.report result
-      Reports.json.should.have.been.calledWith result
+      Reports.cli.should.have.been.calledWith result

@@ -5,11 +5,6 @@ Table = require 'cli-table'
 createOutputDir = (options) ->
   mkdirp.sync options.output if not fs.existsSync options.output
 
-sortByCoverage = (a, b) ->
-  return 1 if a.coverage > b.coverage
-  return -1 if a.coverage < b.coverage
-  return 0
-
 module.exports =
   html: (result, options) ->
     createOutputDir options
@@ -23,18 +18,7 @@ module.exports =
         console.log 'File ' + options.output + '/coverage-blamer.json created!'
 
   cli: (result, options) ->
-    result.files.sort sortByCoverage
-    # result.authors.sort sortByCoverage
-
-    keysSorted = Object.keys(result.authors).sort (a, b) ->
-      return 1 if result.authors[a].coverage > result.authors[b].coverage
-      return -1 if result.authors[a].coverage < result.authors[b].coverage
-      return 0
-
-    authors = {}
-    authors[author] = result.authors[author] for author in keysSorted
-
-    table = new Table(
+    authorsTable = new Table(
       head: [
         'Author'
         'Lines'
@@ -42,12 +26,61 @@ module.exports =
         'Coverage'
       ]
       colWidths: [
-        300
-        100
-        100
-        100
+        50
+        15
+        15
+        15
       ])
-    # table is an Array, so you can `push`, `unshift`, `splice` and friendsuncoveredLines
-    table.push authors[author].author, authors[author].lines, authors[author].uncoveredLines, authors[author].coverage + "%" for author in authors
-    console.log authors
-    console.log table.toString()
+
+    filesTable = new Table(
+      head: [
+        'File'
+        'Lines'
+        'Uncovered Lines'
+        'Coverage'
+      ]
+      colWidths: [
+        50
+        15
+        15
+        15
+      ])
+
+    datesTable = new Table(
+      head: [
+        'Date'
+        'Lines'
+        'Uncovered Lines'
+        'Coverage'
+      ]
+      colWidths: [
+        50
+        15
+        15
+        15
+      ])
+
+    authorsTable.push ([
+      result.authors[author].author,
+      result.authors[author].lines,
+      result.authors[author].uncoveredLines,
+      result.authors[author].coverage + "%"
+    ] for author of result.authors)...
+
+    filesTable.push ([
+      file.filename,
+      file.lines,
+      file.uncoveredLines,
+      file.coverage + "%"
+    ] for file in result.files when file.coverage isnt 100)...
+
+    datesTable.push ([
+      (new Date(parseInt(dateString + "000"))).toDateString(),
+      coverage.lines,
+      coverage.uncoveredLines,
+      coverage.coverage + "%"
+    ] for dateString, coverage of result.dates)...
+
+    console.log authorsTable.toString()
+    console.log filesTable.toString()
+    console.log datesTable.toString()
