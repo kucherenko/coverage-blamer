@@ -1,7 +1,7 @@
 
 require "./_bootstrap"
 
-describe "Processors", ->
+describe.skip "Processors", ->
 
   sut = null
   result = null
@@ -73,7 +73,6 @@ describe "Processors", ->
         "dates":
           "1413406801":
             "lines": 2
-
             "uncoveredLines": 0
 
   it "should group code by dates", ->
