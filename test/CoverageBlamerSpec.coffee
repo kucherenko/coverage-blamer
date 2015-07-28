@@ -35,6 +35,7 @@ describe "Coverage Blamer", ->
     } ]
 
     Coverage = proxyquire "#{sourcePath}Coverage",
+      glob: sync: env.stub().returns ['/path/to/file.json']
       fs: realpathSync: env.stub().returns '/path/to/file.json'
 
     coverage = new Coverage pathToSource

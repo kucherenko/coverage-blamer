@@ -30,6 +30,7 @@
     "cli-table": "^0.3.1",
     "coffee-script": "~1.8.x",
     "commander": "^2.6.x",
+    "glob": "^5.0.14",
     "lcov-parse": "^0.0.x",
     "lodash": "~2.4.x",
     "mkdirp": "^0.5.x"
