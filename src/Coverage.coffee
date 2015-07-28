@@ -1,12 +1,14 @@
 path = require 'path'
 fs = require 'fs'
+glob = require 'glob'
 json = require './coverage/json'
 lcov = require './coverage/lcov'
 
 
 class Coverage
 
-  constructor: (file) ->
+  constructor: (pattern) ->
+    [file] = glob.sync pattern
     @file = fs.realpathSync file
     @coverager = null
     @initialize()
