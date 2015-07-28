@@ -5,6 +5,7 @@
     + Coverage by day
     + Coverage by day and author
  - Reporters
+    + CLI
     + JSON
     - HTML and CSS
  + Cli runner
