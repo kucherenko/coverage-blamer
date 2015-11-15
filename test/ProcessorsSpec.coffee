@@ -1,13 +1,20 @@
 
 require "./_bootstrap"
 
-describe.skip "Processors", ->
+describe "Processors", ->
 
   sut = null
   result = null
+  dateTimestamp1 = null
+  dateTimestamp2 = null
 
   beforeEach ->
-    json = env.stub()
+
+    dateString1 = "2014-10-15T12:33:31.675393Z"
+    dateString2 = "2014-10-16T12:35:31.675393Z"
+
+    dateTimestamp1 = (new Date (new Date dateString1).toLocaleDateString()).getTime() / 1000
+    dateTimestamp2 = (new Date (new Date dateString2).toLocaleDateString()).getTime() / 1000
 
     result = files: [
       {
@@ -16,13 +23,13 @@ describe.skip "Processors", ->
           "1":
             "rev": "rev",
             "author": "author",
-            "date": "2014-10-15T12:33:31.675393Z",
+            "date": dateString1,
             "line": "1"
             "coverage": 0
           "2":
             "rev": "rev",
             "author": "author",
-            "date": "2014-10-15T12:33:31.675393Z",
+            "date": dateString1,
             "line": "2"
             "coverage": 1
       } ,
@@ -32,19 +39,19 @@ describe.skip "Processors", ->
           "1":
             "rev": "rev",
             "author": "author",
-            "date": "2014-10-15T12:33:31.675393Z",
+            "date": dateString1,
             "line": "1"
             "coverage": 0
           "2":
             "rev": "rev1",
             "author": "author1",
-            "date": "2014-10-16T12:35:31.675393Z",
+            "date": dateString2,
             "line": "2"
             "coverage": 1
           "3":
             "rev": "rev1",
             "author": "author1",
-            "date": "2014-10-16T12:35:31.675393Z",
+            "date": dateString2,
             "line": "3"
             "coverage": 1
       }
@@ -62,7 +69,7 @@ describe.skip "Processors", ->
         "lines": 3
         "uncoveredLines": 2
         "dates":
-          "1413309601":
+          "#{dateTimestamp1}":
             "lines": 3
             "uncoveredLines": 2
       "AUTHOR1":
@@ -71,7 +78,7 @@ describe.skip "Processors", ->
         "lines": 2
         "uncoveredLines": 0
         "dates":
-          "1413396001":
+          "#{dateTimestamp2}":
             "lines": 2
             "uncoveredLines": 0
 
@@ -79,11 +86,11 @@ describe.skip "Processors", ->
     sut.process result
 
     result.dates.should.deep.equal
-      "1413309601":
+      "#{dateTimestamp1}":
         "coverage": 33.33333333333334
         "lines": 3
         "uncoveredLines": 2
-      "1413396001":
+      "#{dateTimestamp2}":
         "coverage": 100
         "lines": 2
         "uncoveredLines": 0

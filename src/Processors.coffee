@@ -2,12 +2,7 @@ _ = require 'lodash'
 
 prepareDate = (string) ->
   d = new Date string
-  d.setHours(0)
-  d.setMinutes(0)
-  d.setSeconds(1)
-  d.setMilliseconds(0)
-  (d.getTime() + d.getTimezoneOffset()*60*1000) / 1000
-
+  (new Date d.toLocaleDateString()).getTime() / 1000
 
 sortByCoverage = (a, b) ->
   return 1 if a.coverage > b.coverage
