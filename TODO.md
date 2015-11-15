@@ -1,14 +1,14 @@
 #TODO list
 
  + Statistic processors
-    + Coverage by author
-    + Coverage by day
-    + Coverage by day and author
+    + ~~Coverage by author~~
+    + ~~Coverage by day~~
+    + ~~Coverage by day and author~~
  - Reporters
-    + CLI
-    + JSON
+    + ~~CLI~~
+    + ~~JSON~~
     - HTML and CSS
- + Cli runner
+ + ~~Cli runner~~
  - Blame with error
  - Documentation
- + lcov support
+ - lcov support

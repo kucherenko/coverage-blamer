@@ -35,7 +35,7 @@ class CoverageBlamer
   blame: ->
     coverage = @coverage.toObject()
 
-    blamePromisses = []
+    blamePromises = []
     coverageRegistry = {}
     for file in coverage.files
       if fs.existsSync file.filename
@@ -43,9 +43,9 @@ class CoverageBlamer
       else
         filePath = path.join(@src, file.filename)
       coverageRegistry[filePath] = file
-      blamePromisses.push @blamer.blameByFile filePath
+      blamePromises.push @blamer.blameByFile filePath
 
-    Promise.all(blamePromisses).then (results) ->
+    Promise.all(blamePromises).then (results) ->
         for res in results
           fileName = Object.keys(res)[0]
           coverageRegistry[fileName].source = _.merge coverageRegistry[fileName].source, res[fileName]

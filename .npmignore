@@ -1,11 +1,11 @@
-.tmp
+.tmp/
 .travis.yml
 .coveralls.yml
-.git
+.git/
 .gitignore
 npm-debug.log
-.idea
-./coverage
+.idea/
+coverage/
 atlassian-ide-plugin.xml
 coverage-blamer.sublime-project
-assets
+assets/
