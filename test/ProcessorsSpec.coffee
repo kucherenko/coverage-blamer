@@ -1,7 +1,7 @@
 
 require "./_bootstrap"
 
-describe.skip "Processors", ->
+describe "Processors", ->
 
   sut = null
   result = null
