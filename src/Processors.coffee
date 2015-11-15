@@ -4,6 +4,7 @@ prepareDate = (string) ->
   d = new Date string
   d.setHours(0)
   d.setMinutes(0)
+  d.setUTCHours(d.getUTCHours() - 7)
   d.setSeconds(1)
   d.setMilliseconds(0)
   d.getTime() / 1000

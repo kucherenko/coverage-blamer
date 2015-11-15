@@ -62,7 +62,7 @@ describe "Processors", ->
         "lines": 3
         "uncoveredLines": 2
         "dates":
-          "1413320401":
+          "1413295201":
             "lines": 3
             "uncoveredLines": 2
       "AUTHOR1":
@@ -71,7 +71,7 @@ describe "Processors", ->
         "lines": 2
         "uncoveredLines": 0
         "dates":
-          "1413406801":
+          "1413381601":
             "lines": 2
             "uncoveredLines": 0
 
@@ -79,11 +79,11 @@ describe "Processors", ->
     sut.process result
 
     result.dates.should.deep.equal
-      "1413320401":
+      "1413295201":
         "coverage": 33.33333333333334
         "lines": 3
         "uncoveredLines": 2
-      "1413406801":
+      "1413381601":
         "coverage": 100
         "lines": 2
         "uncoveredLines": 0
