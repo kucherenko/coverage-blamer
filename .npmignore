@@ -5,7 +5,10 @@
 .gitignore
 npm-debug.log
 .idea/
+test/
+src/
 coverage/
 atlassian-ide-plugin.xml
 coverage-blamer.sublime-project
 assets/
+bin/coverage-blamer.js

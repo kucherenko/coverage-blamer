@@ -21,6 +21,7 @@ node_modules
 npm-debug.log
 11
 .idea
+lib/
 
 ########################
 # misc / editors

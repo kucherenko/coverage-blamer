@@ -1,5 +1,2 @@
-var CoffeeScript = require("coffee-script");
-CoffeeScript.register();
-
-var CoverageBlamer = require('./src/CoverageBlamer');
+var CoverageBlamer = require('./lib/CoverageBlamer');
 exports = module.exports = CoverageBlamer;
