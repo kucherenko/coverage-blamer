@@ -30,7 +30,7 @@
     "bluebird": "~3.0.x",
     "cli-table": "^0.3.1",
     "commander": "^2.6.x",
-    "glob": "^5.0.14",
+    "glob": "^6.0.x",
     "lcov-parse": "^0.0.x",
     "lodash": "~3.10.x",
     "mkdirp": "^0.5.x"
