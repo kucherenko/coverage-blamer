@@ -18,11 +18,16 @@
     "url": "https://github.com/kucherenko/coverage-blamer.git"
   },
   "keywords": [
+    "code coverage",
     "blame",
     "code",
     "coverage",
     "tests",
+    "jscoverage",
+    "coffee-coverage",
     "mocha",
+    "istanbul",
+    "nyc",
     "jasmine"
   ],
   "dependencies": {
