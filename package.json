@@ -36,6 +36,7 @@
     "cli-table": "^0.3.1",
     "commander": "^2.6.x",
     "glob": "^6.0.x",
+    "jade": "^1.11.0",
     "lcov-parse": "^0.0.x",
     "lodash": "~3.10.x",
     "mkdirp": "^0.5.x"
