@@ -34,3 +34,5 @@ nbproject
 .idea
 atlassian-ide-plugin.xml
 coverage-blamer.sublime-project
+coverage/covblm/
+coverage/zzz/
