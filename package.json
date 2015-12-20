@@ -37,9 +37,11 @@
     "commander": "^2.6.x",
     "glob": "^6.0.x",
     "jade": "^1.11.0",
+    "kouto-swiss": "^0.11.13",
     "lcov-parse": "^0.0.x",
     "lodash": "~3.10.x",
-    "mkdirp": "^0.5.x"
+    "mkdirp": "^0.5.x",
+    "stylus": "^0.53.0"
   },
   "devDependencies": {
     "mocha": "^2.3.x",

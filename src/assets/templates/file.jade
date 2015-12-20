@@ -1,0 +1,22 @@
+//- file.jade
+extends ./_layout.jade
+
+block title
+  title #{name} - Coverage Blamer Report by File
+
+block styles
+  link(rel='stylesheet', href='../css/main.css')
+
+block content
+  h1 #{name} - Coverage Blamer Report by File
+
+  a(href="../index.html") Dashboard
+
+  pre
+    code
+      each code, line in source
+        div.line(class=code.coverage === 0 ? 'uncovered' : '')
+          span.coverage=code.coverage !== '' ? code.coverage : '-'
+          span.author=code.author ? code.author : ' '
+          span.linenumber=line
+          span.code #{code.source}

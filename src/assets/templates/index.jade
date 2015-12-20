@@ -1,0 +1,44 @@
+//- index.jade
+extends ./_layout.jade
+
+block title
+  title Coverage Blamer Report
+
+block content
+  h1 Coverage Blamer Report
+  
+  .dashboard
+    .head
+      .author Author
+      .lines Lines
+      .uncoveredLines Uncovered Lines
+      .coverage Coverage
+    each author, name in authors
+      .author
+        a(href="./authors/#{name}.html") #{author.author}
+      .lines #{author.lines}
+      .uncoveredLines #{author.uncoveredLines}
+      .coverage #{author.coverage.toFixed(2)}%
+
+    .head
+      .file File
+      .lines Lines
+      .uncoveredLines Uncovered Lines
+      .coverage Coverage
+    each file in files
+      .file
+        a(href="./files/#{file.filename.replace(/\//g, '_')}.html") #{file.filename}
+      .lines #{file.lines}
+      .uncoveredLines #{file.uncoveredLines}
+      .coverage #{file.coverage.toFixed(2)}%
+    .head
+      .date Date
+      .lines Lines
+      .uncoveredLines Uncovered Lines
+      .coverage Coverage
+    each coverage, dateString in dates
+      .date
+        a(href="./dates/#{dateString}.html")=(new Date(parseInt(dateString + "000"))).toDateString()
+      .lines #{coverage.lines}
+      .uncoveredLines #{coverage.uncoveredLines}
+      .coverage #{coverage.coverage ? coverage.coverage.toFixed(2) : ''}%

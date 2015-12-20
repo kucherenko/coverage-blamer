@@ -63,22 +63,24 @@ describe "Processors", ->
     sut.process result
 
     result.authors.should.deep.equal
-      "AUTHOR":
+      "author":
         "author": "author"
         "coverage": 33.33333333333334
         "lines": 3
         "uncoveredLines": 2
         "dates":
           "#{dateTimestamp1}":
+            "coverage": 33.33333333333334
             "lines": 3
             "uncoveredLines": 2
-      "AUTHOR1":
+      "author1":
         "author": "author1"
         "coverage": 100
         "lines": 2
         "uncoveredLines": 0
         "dates":
           "#{dateTimestamp2}":
+            "coverage": 100
             "lines": 2
             "uncoveredLines": 0
 

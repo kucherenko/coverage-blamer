@@ -1,5 +1,9 @@
 _ = require 'lodash'
 
+calculateCoverage = (object) ->
+  object.coverage = 100 - (object.uncoveredLines / object.lines) * 100
+  return object
+
 prepareDate = (string) ->
   d = new Date string
   (new Date d.toLocaleDateString()).getTime() / 1000
@@ -22,7 +26,8 @@ sortObjectByCoverage = (object) ->
 
 normalizeAuthorName = (name)->
   name = name.replace /^\s*|\s*$/g, ''
-  name.toUpperCase()
+  name = name.replace /\ /g, '_'
+  name.toLowerCase()
 
 getAuthorTemplate = (name, date) ->
   author =
@@ -66,27 +71,28 @@ process = (result) ->
         lines++
         file.lines++
         author.lines++
-        author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
-        dates[date].coverage = 100 - (dates[date].uncoveredLines / dates[date].lines) * 100
-        author.dates[date].lines++
         dates[date].lines++
+        author.dates[date].lines++
 
       if line.coverage is 0
         uncoveredLines++
         file.uncoveredLines++
+        dates[date].uncoveredLines++
         author.uncoveredLines++
         author.dates[date].uncoveredLines++
-        dates[date].uncoveredLines++
-        author.coverage = 100 - (author.uncoveredLines / author.lines) * 100
-        dates[date].coverage = 100 - (dates[date].uncoveredLines / dates[date].lines) * 100
-    file.coverage = 100 - (file.uncoveredLines / file.lines) * 100
+
+      author.dates[date] = calculateCoverage author.dates[date]
+      dates[date] = calculateCoverage dates[date]
+      author = calculateCoverage author
+
+    file = calculateCoverage file
 
   result.dates = dates
   result.authors = sortObjectByCoverage authors
   result.files = result.files.sort sortByCoverage if result.files
   result.uncoveredLines = uncoveredLines
   result.lines = lines
-  result.coverage = 100 - (uncoveredLines/lines)*100
+  result = calculateCoverage result
   return result
 
 module.exports =

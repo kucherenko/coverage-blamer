@@ -1,0 +1,28 @@
+//- index.jade
+extends ./_layout.jade
+
+block title
+  title #{author} - Coverage Blamer Report by Author
+
+block styles
+  link(rel='stylesheet', href='../css/main.css')
+
+
+block content
+  h1 #{author} - Coverage Blamer Report by Author
+
+  a(href="../index.html") Dashboard
+
+
+  .head
+    .date Date
+    .lines Lines
+    .uncoveredLines Uncovered Lines
+    .coverage Coverage
+
+  each coverage, dateString in dates
+    .date
+      a(href="./dates/#{dateString}.html")=(new Date(parseInt(dateString + "000"))).toDateString()
+    .lines #{coverage.lines}
+    .uncoveredLines #{coverage.uncoveredLines}
+    .coverage #{coverage.coverage ? coverage.coverage.toFixed(2) : ''}%
