@@ -1,6 +1,6 @@
 {
   "name": "coverage-blamer",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "coverage-blamer is tool for get information about authors of uncovered code",
   "main": "index.js",
   "bin": {
