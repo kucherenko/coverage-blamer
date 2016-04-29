@@ -32,6 +32,7 @@
     "commander": "^2.6.x",
     "lcov-parse": "^0.0.x",
     "lodash": "~2.4.x",
+    "markdown-table": "^0.4.0",
     "mkdirp": "^0.5.x"
   },
   "devDependencies": {

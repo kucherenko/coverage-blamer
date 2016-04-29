@@ -1,6 +1,7 @@
 fs = require 'fs'
+path = require 'path'
 mkdirp = require 'mkdirp'
-Table = require 'cli-table'
+table = require 'markdown-table'
 
 createOutputDir = (options) ->
   mkdirp.sync options.output if not fs.existsSync options.output
@@ -18,47 +19,26 @@ module.exports =
         console.log 'File ' + options.output + '/coverage-blamer.json created!'
 
   cli: (result, options) ->
-    authorsTable = new Table(
-      head: [
+    authorsTable = [[
         'Author'
         'Lines'
         'Uncovered Lines'
         'Coverage'
-      ]
-      colWidths: [
-        50
-        15
-        15
-        15
-      ])
+      ]]
 
-    filesTable = new Table(
-      head: [
+    filesTable = [[
         'File'
         'Lines'
         'Uncovered Lines'
         'Coverage'
-      ]
-      colWidths: [
-        50
-        15
-        15
-        15
-      ])
+      ]]
 
-    datesTable = new Table(
-      head: [
+    datesTable = [[
         'Date'
         'Lines'
         'Uncovered Lines'
         'Coverage'
-      ]
-      colWidths: [
-        50
-        15
-        15
-        15
-      ])
+      ]]
 
     authorsTable.push ([
       result.authors[author].author,
@@ -68,7 +48,7 @@ module.exports =
     ] for author of result.authors)...
 
     filesTable.push ([
-      file.filename,
+      path.relative(options.src, file.filename),
       file.lines,
       file.uncoveredLines,
       file.coverage + "%"
@@ -81,6 +61,6 @@ module.exports =
       coverage.coverage + "%"
     ] for dateString, coverage of result.dates)...
 
-    console.log authorsTable.toString()
-    console.log filesTable.toString()
-    console.log datesTable.toString()
+    console.log table(authorsTable), '\n'
+    console.log table(filesTable), '\n'
+    console.log table datesTable
