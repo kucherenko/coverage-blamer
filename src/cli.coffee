@@ -13,6 +13,7 @@ commander
   .option('-s, --source <path>', 'Path to source folder')
   .option('-o, --output <path>', 'Path to output folder')
   .option('-r, --disableRow <boolean>', 'Disable row coverage in report', true)
+  .option('-m, --useMarkdown <boolean>', 'Use markdown for cli output', false)
   .parse process.argv
 
 options =
@@ -21,6 +22,7 @@ options =
   output: commander.output
   src: commander.source
   disableRow: commander.disableRow
+  useMarkdown: commander.useMarkdown
 
 coverageBlamer = new CoverageBlamer options
 
