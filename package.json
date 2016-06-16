@@ -1,6 +1,6 @@
 {
   "name": "coverage-blamer",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "coverage-blamer is tool for get information about authors of uncovered code",
   "main": "index.js",
   "bin": {
@@ -39,7 +39,7 @@
     "jade": "^1.11.0",
     "kouto-swiss": "^0.11.13",
     "lcov-parse": "^0.0.x",
-    "lodash": "~2.4.x",
+    "lodash": "~3.10.x",
     "markdown-table": "^0.4.0",
     "mkdirp": "^0.5.x",
     "stylus": "^0.53.0"
