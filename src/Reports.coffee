@@ -5,6 +5,7 @@ Table = require 'cli-table'
 jade = require 'jade'
 stylus = require 'stylus'
 koutoSwiss = require 'kouto-swiss'
+mdTable = require 'markdown-table'
 
 createDir = (dirname) ->
   mkdirp.sync dirname if not fs.existsSync dirname
@@ -16,6 +17,38 @@ writeFile = (file, content) ->
       console.log err
     else
       console.log 'File ' + file + ' created!'
+
+printCli = (data, options) ->
+  return printCliMd data if options.useMarkdown
+
+  {authors, files, dates} = data
+
+  authorsTable = new Table
+    head: authors.head
+    colWidths: authors.colWidths
+
+  authorsTable.push.apply authorsTable, authors.data
+
+  filesTable = new Table
+    head: files.head
+    colWidths: files.colWidths
+
+  filesTable.push.apply filesTable, files.data
+
+  datesTable = new Table
+    head: dates.head
+    colWidths: dates.colWidths
+
+  datesTable.push.apply datesTable, dates.data
+
+  console.log authorsTable.toString()
+  console.log filesTable.toString()
+  console.log datesTable.toString()
+
+printCliMd = ({authors, files, dates}) ->
+  console.log mdTable(authors), '\n'
+  console.log mdTable(files), '\n'
+  console.log mdTable dates
 
 module.exports =
   html: (result, options) ->
@@ -49,39 +82,33 @@ module.exports =
     writeFile options.output + '/coverage-blamer.json', JSON.stringify(result)
 
   cli: (result, options) ->
-    authorsTable = new Table
-      head: ['Author', 'Lines', 'Uncovered Lines', 'Coverage']
-      colWidths: [50, 15, 15, 15]
+    data =
+      authors:
+        head: ['Author', 'Lines', 'Uncovered Lines', 'Coverage']
+        colWidths: [50, 15, 15, 15]
+        data: [].concat ([
+          result.authors[author].author,
+          result.authors[author].lines,
+          result.authors[author].uncoveredLines,
+          result.authors[author].coverage.toFixed(2) + "%"
+        ] for author of result.authors)
+      files:
+        head: ['File', 'Lines', 'Uncovered Lines', 'Coverage']
+        colWidths: [50, 15, 15, 15]
+        data: [].concat ([
+          file.filename,
+          file.lines,
+          file.uncoveredLines,
+          file.coverage.toFixed(2) + "%"
+        ] for file in result.files when file.coverage isnt 100)
+      dates:
+        head: ['Date', 'Lines', 'Uncovered Lines', 'Coverage']
+        colWidths: [50, 15, 15, 15]
+        data: [].concat ([
+          (new Date(parseInt(dateString + "000"))).toDateString(),
+          coverage.lines,
+          coverage.uncoveredLines,
+          if coverage.coverage then coverage.coverage.toFixed(2) + "%" else '100.00%'
+        ] for dateString, coverage of result.dates)
 
-    filesTable = new Table
-      head: ['File', 'Lines', 'Uncovered Lines', 'Coverage']
-      colWidths: [50, 15, 15, 15]
-
-    datesTable = new Table
-      head: ['Date', 'Lines', 'Uncovered Lines', 'Coverage']
-      colWidths: [50, 15, 15, 15]
-
-    authorsTable.push ([
-      result.authors[author].author,
-      result.authors[author].lines,
-      result.authors[author].uncoveredLines,
-      result.authors[author].coverage.toFixed(2) + "%"
-    ] for author of result.authors)...
-
-    filesTable.push ([
-      file.filename,
-      file.lines,
-      file.uncoveredLines,
-      file.coverage.toFixed(2) + "%"
-    ] for file in result.files when file.coverage isnt 100)...
-
-    datesTable.push ([
-      (new Date(parseInt(dateString + "000"))).toDateString(),
-      coverage.lines,
-      coverage.uncoveredLines,
-      if coverage.coverage then coverage.coverage.toFixed(2) + "%" else '100.00%'
-    ] for dateString, coverage of result.dates)...
-
-    console.log authorsTable.toString()
-    console.log filesTable.toString()
-    console.log datesTable.toString()
+    printCli data, options
