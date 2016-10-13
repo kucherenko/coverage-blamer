@@ -37,7 +37,7 @@
     "commander": "^2.6.x",
     "glob": "^6.0.x",
     "jade": "^1.11.0",
-    "kouto-swiss": "^0.11.13",
+    "kouto-swiss": "^0.13.0",
     "lcov-parse": "^0.0.x",
     "lodash": "~3.10.x",
     "markdown-table": "^0.4.0",
