@@ -7,11 +7,12 @@
     "coverage-blamer": "./bin/coverage-blamer"
   },
   "scripts": {
-    "prepublish": "coffee -o lib -c src",
+    "prepublish": "npm run snyk-protect && coffee -o lib -c src",
     "test": "mocha --compilers coffee:coffee-script/register $(find test -name '*.coffee')",
     "test-coverage": "./node_modules/coffee-coverage/bin/coffeecoverage --path relative src .tmp & COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R json-cov $(find test -name '*.coffee') > coverage/coverage.json",
     "ci": "./node_modules/coffee-coverage/bin/coffeecoverage --path relative src .tmp & COVERAGE=true ./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register -R mocha-phantom-coverage-reporter $(find test -name '*.coffee')",
-    "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')"
+    "developing": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script/register --watch $(find test -name '*.coffee')",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,8 @@
     "lodash": "~3.10.x",
     "markdown-table": "^0.4.0",
     "mkdirp": "^0.5.x",
-    "stylus": "^0.53.0"
+    "stylus": "^0.53.0",
+    "snyk": "^1.17.5"
   },
   "devDependencies": {
     "mocha": "^2.3.x",
@@ -61,5 +63,6 @@
   "preferGlobal": true,
   "readmeFilename": "README.md",
   "author": "Andrey Kucherenko",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
