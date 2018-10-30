@@ -42,7 +42,7 @@
     "lodash": "~4.17.5",
     "markdown-table": "^0.4.0",
     "mkdirp": "^0.5.x",
-    "stylus": "^0.53.0"
+    "stylus": "^0.54.3"
   },
   "devDependencies": {
     "mocha": "^2.3.x",
