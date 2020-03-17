@@ -41,7 +41,7 @@
     "lcov-parse": "^0.0.x",
     "lodash": "~4.17.5",
     "markdown-table": "^0.4.0",
-    "mkdirp": "^0.5.x",
+    "mkdirp": "^1.0.0",
     "stylus": "^0.53.0"
   },
   "devDependencies": {
