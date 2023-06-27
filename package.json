@@ -43,7 +43,7 @@
     "lodash": "~4.17.5",
     "markdown-table": "^0.4.0",
     "mkdirp": "^0.5.x",
-    "stylus": "^0.54.3",
+    "stylus": "^0.56.0",
     "snyk": "^1.192.4"
   },
   "devDependencies": {
